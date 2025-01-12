@@ -16,6 +16,21 @@ st.markdown(
     """
 )
 
+# Initialize state for video visibility
+if 'show_video' not in st.session_state:
+    st.session_state.show_video = False
+
+# Video Section with Toggle Button
+st.subheader("📽️ Memory Lane")
+if st.button("Watch Graduation Archive 🎓"):
+    st.session_state.show_video = not st.session_state.show_video
+
+if st.session_state.show_video:
+    video_file = open('graduation_memories.mp4', 'rb')
+    video_bytes = video_file.read()
+    st.video(video_bytes)
+    st.markdown("*Cherishing these beautiful memories...*")
+
 # Timeline Section
 st.subheader("Your Life's Journey 🚀")
 timeline_data = {
@@ -37,17 +52,15 @@ st.subheader("With Love from Your Family ❤️")
 col1, col2, col3 = st.columns(3)
 
 # Predefined messages for each family member
-mom_placeholder = """Dear Yukta,
-I am so proud of the woman you've become. Your dedication and hard work inspire me every day. May this new chapter bring you all the success and happiness you deserve.
-Love, Mom ❤️"""
+mom_placeholder = """My sweet Yukta,
+You will always be my little girl, no matter how big you grow. I’m so proud of the kindness, strength, and determination you carry in your heart. Keep spreading your light and love wherever you go. My blessings are always with you. Love, Mom. ❤️"""
 
-dad_placeholder = """Dear Yukta,
-messgae!
-Love, Dad 🌟"""
+dad_placeholder = """My dearest Cookie,
+You’ve always been the sunshine of our home, filling it with laughter and joy. Watching you grow into the wonderful person you are fills me with pride. Keep chasing your dreams with that bright smile of yours – the world is yours to conquer! Love you endlessly, Dad.
+ 🌟"""
 
-sister_placeholder = """Dear Di,
-"Message here"!
-Love, Your Sister 💕"""
+sister_placeholder = """Hey baby sis,
+You’re the spark of our family and my favorite partner-in-crime! I’m so proud of everything you’ve achieved and the amazing person you’re becoming. Keep reaching for the stars, and know I’m always here cheering you on. Love you tons, Your Didi. 💕"""
 
 with col1:
     st.image("maabaap.jpg", caption="Mom", use_container_width=True)
